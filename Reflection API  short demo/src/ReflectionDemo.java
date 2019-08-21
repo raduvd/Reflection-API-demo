@@ -1,10 +1,27 @@
-// A simple Java program to demonstrate the use of reflection
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ReflectionDemo {
+    public static void main(String args[]) throws Exception {
+
+        Constructor<?> constructor = Class
+                .forName("random.PrivateClass")
+                .getDeclaredConstructor();
+        constructor.setAccessible(true);
+        Object o = constructor.newInstance();
+        Class<?> cls = o.getClass();
+
+        Field privateField = cls.getDeclaredField("s");
+        privateField.setAccessible(true);
+
+        System.out.println("Accessing a private field, which has the value == " + privateField.get(o));
+
+        privateField.set(o, "NEW PRIVATE FIELD VALUE");
+
+        System.out.println("The value for the new private field is " + privateField.get(o));
+
+    }
 }
 
 
