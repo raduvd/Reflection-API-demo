@@ -79,9 +79,14 @@ class Demo {
         // of the access specifier used with the field
         field.setAccessible(true);
 
+        System.out.println("The original value of the field is " + field.get(obj));
+
         // takes object and the new value to be assigned
         // to the field as arguments
         field.set(obj, "JAVA");
+
+        System.out.println("The new value of the private field is " + field.get(obj));
+        ;
 
         // Creates object of desired method by providing the
         // method name as argument to the getDeclaredMethod
